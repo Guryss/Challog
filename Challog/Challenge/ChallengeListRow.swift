@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChallengeListRow: View {
     var challenge: Challenge
+    
     var body: some View {
         HStack {
             Text("🗂️")
@@ -27,6 +28,10 @@ struct ChallengeListRow: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(.text)
             }
+            
+            Spacer()
+            
+            Image(systemName: "chevron.forward")
         }
         .padding(15)
     }

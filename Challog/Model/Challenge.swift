@@ -6,12 +6,21 @@
 //
 
 import Foundation
+//import SwiftData
 
+//@Model
 struct Challenge: Identifiable {
     var id = UUID()
     var title: String
     var startDate: String
     var endDate: String
+    
+//    init(id: UUID = UUID(), title: String, startDate: String, endDate: String) {
+//        self.id = id
+//        self.title = title
+//        self.startDate = startDate
+//        self.endDate = endDate
+//    }
 }
 
 let challenges: [Challenge] = [

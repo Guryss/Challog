@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C969F4042BCABCE1000B48A2 /* ChallengeDayRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969F4032BCABCE1000B48A2 /* ChallengeDayRow.swift */; };
 		C975194A2BCAB18800255994 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97519492BCAB18800255994 /* Challenge.swift */; };
 		C975194C2BCAB5B200255994 /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975194B2BCAB5B200255994 /* ChallengeDetailView.swift */; };
 		C99F27172BC91F49000A172A /* ChallogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99F27162BC91F49000A172A /* ChallogApp.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C969F4032BCABCE1000B48A2 /* ChallengeDayRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDayRow.swift; sourceTree = "<group>"; };
 		C97519492BCAB18800255994 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		C975194B2BCAB5B200255994 /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
 		C99F27132BC91F49000A172A /* Challog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 				C9B0AEE72BCAAB2C009648F5 /* ChallengeListRow.swift */,
 				C99F272D2BC92D2A000A172A /* ChallengeView.swift */,
 				C975194B2BCAB5B200255994 /* ChallengeDetailView.swift */,
+				C969F4032BCABCE1000B48A2 /* ChallengeDayRow.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				C9B0AEE62BCAA5CB009648F5 /* CalendarView.swift in Sources */,
 				C99F27172BC91F49000A172A /* ChallogApp.swift in Sources */,
 				C9B0AEE82BCAAB2C009648F5 /* ChallengeListRow.swift in Sources */,
+				C969F4042BCABCE1000B48A2 /* ChallengeDayRow.swift in Sources */,
 				C975194C2BCAB5B200255994 /* ChallengeDetailView.swift in Sources */,
 				C99F272E2BC92D2A000A172A /* ChallengeView.swift in Sources */,
 				C99F272A2BC922C6000A172A /* Category.swift in Sources */,

@@ -12,7 +12,7 @@ struct ChallengeView: View {
         VStack {
             RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(.accent)
-                .frame(height: 220)
+                .frame(height: 180)
                 .shadow(color: .accent, radius: 1, x: 1, y: 1)
                 .overlay {
                     HStack {
@@ -34,14 +34,16 @@ struct ChallengeView: View {
                         
                         Image(.logo)
                             .resizable()
-                            .frame(width: 300, height: 300)
+                            .frame(width: 250, height: 250)
                     }
                 }
                 .padding(30)
             
             List {
                 ForEach(challenges) { challenge in
-                    ChallengeListRow(challenge: challenge)
+                    NavigationLink(destination: ChallengeDetailView(challenge: challenge)) {
+                        ChallengeListRow(challenge: challenge)
+                    }
                 }
             }
         }
