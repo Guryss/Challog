@@ -21,11 +21,12 @@ struct ChallengeDetailView: View {
                     .font(.system(size: 30))
                     .fontWeight(.bold)
                 
-                
                 Spacer()
                 
                 Button(action: {
-                    
+                    //TODO: create
+                    let newNote = Note(content: "", createdAt: .now)
+                    modelContext.insert(newNote)
                 }, label: {
                     Image(systemName: "square.and.pencil")
                         .resizable()
@@ -37,7 +38,7 @@ struct ChallengeDetailView: View {
                 
                 
                 Button(action: {
-                    
+                    //TODO: delete
                 }, label: {
                     Image(systemName: "trash")
                         .resizable()
@@ -48,7 +49,7 @@ struct ChallengeDetailView: View {
                 .buttonStyle(.plain)
                 
                 Button(action: {
-                    
+                    //TODO: - add local image
                 }, label: {
                     HStack {
                         Image(systemName: "photo.on.rectangle")
@@ -67,9 +68,9 @@ struct ChallengeDetailView: View {
             HStack {
                 List {
                     ForEach(notes) { note in
-                        ChallengeDayRow(number: note.id)
+                        ChallengeDayRow(number: note.hashValue)
                             .onTapGesture {
-                                selectedIndex = note.id - 1
+                                selectedIndex = note.hashValue - 1
                             }
                     }
                 }

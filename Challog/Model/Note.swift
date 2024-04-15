@@ -10,12 +10,14 @@ import SwiftData
 
 @Model
 class Note {
-    var id: Int
+    @Attribute(.unique) var id: UUID = UUID()
     var content: String = ""
     var createdAt: Date = Date()
     
-    init(id: Int, content: String, createdAt: Date) {
-        self.id = id
+    @Relationship(inverse: \Challenge.notes)
+    var challenge: Challenge?
+    
+    init(content: String, createdAt: Date) {
         self.content = content
         self.createdAt = createdAt
     }

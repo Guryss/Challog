@@ -19,7 +19,6 @@ struct ChallengeWritingView: View {
     @State private var noteText: String = ""
     
     var body: some View {
-        
         VStack {
             Text("\(Date(), formatter: dateFormatter)")
                 .fontWeight(.medium)
@@ -30,9 +29,9 @@ struct ChallengeWritingView: View {
                 .font(.system(size: 16))
                 .fontWeight(.medium)
                 .padding(.horizontal, 20)
+            
+            Spacer()
         }
-        
-        Spacer()
     }
 }
 

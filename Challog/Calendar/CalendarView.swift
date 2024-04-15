@@ -17,20 +17,11 @@ struct CalendarView: View {
     }()
     
     var body: some View {
-        
         VStack {
             Text("\(Date(), formatter: dateFormatter)")
                 .font(.system(size: 20))
                 .fontWeight(.semibold)
                 .padding()
-            
-            DatePicker (
-                "",
-                selection: $date,
-                displayedComponents: [.date]
-            )
-            .datePickerStyle(.graphical)
-            .padding()
         }
     }
 }
