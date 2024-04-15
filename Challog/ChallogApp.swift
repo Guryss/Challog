@@ -14,5 +14,7 @@ struct ChallogApp: App {
         WindowGroup {
             MainView()
         }
+        .modelContainer(previewChallengeContainer)
+        //.modelContainer(for: [Challenge.self, Note.self])
     }
 }

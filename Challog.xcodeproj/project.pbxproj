@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9240A8B2BCCEEAA00F99EE3 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9240A8A2BCCEEAA00F99EE3 /* Note.swift */; };
+		C93492912BCBFA46006F4550 /* ChallengeWritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93492902BCBFA46006F4550 /* ChallengeWritingView.swift */; };
 		C969F4042BCABCE1000B48A2 /* ChallengeDayRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969F4032BCABCE1000B48A2 /* ChallengeDayRow.swift */; };
 		C975194A2BCAB18800255994 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97519492BCAB18800255994 /* Challenge.swift */; };
 		C975194C2BCAB5B200255994 /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C975194B2BCAB5B200255994 /* ChallengeDetailView.swift */; };
@@ -18,9 +20,12 @@
 		C99F272E2BC92D2A000A172A /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99F272D2BC92D2A000A172A /* ChallengeView.swift */; };
 		C9B0AEE62BCAA5CB009648F5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0AEE52BCAA5CB009648F5 /* CalendarView.swift */; };
 		C9B0AEE82BCAAB2C009648F5 /* ChallengeListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0AEE72BCAAB2C009648F5 /* ChallengeListRow.swift */; };
+		C9D10FCA2BCD058800E90B95 /* PreviewChallengeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D10FC92BCD058800E90B95 /* PreviewChallengeContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9240A8A2BCCEEAA00F99EE3 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		C93492902BCBFA46006F4550 /* ChallengeWritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWritingView.swift; sourceTree = "<group>"; };
 		C969F4032BCABCE1000B48A2 /* ChallengeDayRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDayRow.swift; sourceTree = "<group>"; };
 		C97519492BCAB18800255994 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		C975194B2BCAB5B200255994 /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
@@ -34,6 +39,7 @@
 		C99F272D2BC92D2A000A172A /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		C9B0AEE52BCAA5CB009648F5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C9B0AEE72BCAAB2C009648F5 /* ChallengeListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListRow.swift; sourceTree = "<group>"; };
+		C9D10FC92BCD058800E90B95 /* PreviewChallengeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewChallengeContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,8 @@
 				C99F272D2BC92D2A000A172A /* ChallengeView.swift */,
 				C975194B2BCAB5B200255994 /* ChallengeDetailView.swift */,
 				C969F4032BCABCE1000B48A2 /* ChallengeDayRow.swift */,
+				C93492902BCBFA46006F4550 /* ChallengeWritingView.swift */,
+				C9D10FC92BCD058800E90B95 /* PreviewChallengeContainer.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -110,6 +118,7 @@
 			children = (
 				C99F27292BC922C6000A172A /* Category.swift */,
 				C97519492BCAB18800255994 /* Challenge.swift */,
+				C9240A8A2BCCEEAA00F99EE3 /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,7 +206,10 @@
 				C9B0AEE62BCAA5CB009648F5 /* CalendarView.swift in Sources */,
 				C99F27172BC91F49000A172A /* ChallogApp.swift in Sources */,
 				C9B0AEE82BCAAB2C009648F5 /* ChallengeListRow.swift in Sources */,
+				C93492912BCBFA46006F4550 /* ChallengeWritingView.swift in Sources */,
+				C9D10FCA2BCD058800E90B95 /* PreviewChallengeContainer.swift in Sources */,
 				C969F4042BCABCE1000B48A2 /* ChallengeDayRow.swift in Sources */,
+				C9240A8B2BCCEEAA00F99EE3 /* Note.swift in Sources */,
 				C975194C2BCAB5B200255994 /* ChallengeDetailView.swift in Sources */,
 				C99F272E2BC92D2A000A172A /* ChallengeView.swift in Sources */,
 				C99F272A2BC922C6000A172A /* Category.swift in Sources */,

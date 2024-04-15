@@ -8,8 +8,30 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @State private var date = Date()
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko-KR")
+        formatter.dateFormat = "MMMM, YYYY"
+        return formatter
+    }()
+    
     var body: some View {
-        Text("Hello, Calendar!")
+        
+        VStack {
+            Text("\(Date(), formatter: dateFormatter)")
+                .font(.system(size: 20))
+                .fontWeight(.semibold)
+                .padding()
+            
+            DatePicker (
+                "",
+                selection: $date,
+                displayedComponents: [.date]
+            )
+            .datePickerStyle(.graphical)
+            .padding()
+        }
     }
 }
 

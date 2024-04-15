@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChallengeView: View {
+    @Query private var challenges: [Challenge]
+    
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 20)
@@ -52,4 +55,5 @@ struct ChallengeView: View {
 
 #Preview {
     ChallengeView()
+        .modelContainer(previewChallengeContainer)
 }
