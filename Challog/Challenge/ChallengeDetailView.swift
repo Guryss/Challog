@@ -10,8 +10,9 @@ import SwiftData
 
 struct ChallengeDetailView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var notes: [Note]
+    @Query(sort: \Note.number) private var notes: [Note]
     @State private var selectedIndex: Int = 0
+    @State private var isSelected: Bool = false
     var challenge: Challenge
     
     var body: some View {
@@ -25,8 +26,25 @@ struct ChallengeDetailView: View {
                 
                 Button(action: {
                     //MARK: create
-                    let newNote = Note(content: "")
+                    var maximumIndex = 0
+                    for note in notes {
+                        if maximumIndex < note.number {
+                            maximumIndex = note.number
+                        }
+                    }
+                    let newNote = Note(number: maximumIndex + 1)
+//                    if let lastIndex = notes.indices.last {
+//                        newNote.number = lastIndex
+//                    }
+
+                    newNote.number = maximumIndex + 1
                     modelContext.insert(newNote)
+                    
+                    do {
+                        try modelContext.save()
+                    } catch {
+                        print("Error creating note: \(error.localizedDescription)")
+                    }
                 }, label: {
                     Image(systemName: "square.and.pencil")
                         .resizable()
@@ -37,7 +55,15 @@ struct ChallengeDetailView: View {
                 .buttonStyle(.plain)
                 
                 Button(action: {
-                    //TODO: delete
+                    //MARK: delete
+                    if notes.indices.contains(selectedIndex) {
+                        modelContext.delete(notes[selectedIndex])
+                        do {
+                            try modelContext.save()
+                        } catch {
+                            print("Error deleting note: \(error.localizedDescription)")
+                        }
+                    }
                 }, label: {
                     Image(systemName: "trash")
                         .resizable()
@@ -67,11 +93,17 @@ struct ChallengeDetailView: View {
             HStack {
                 List {
                     ForEach(notes.indices, id: \.self) { index in
-                        ChallengeDayRow(number: index)
+                        ChallengeDayRow(number: notes[index].number)
                             .onTapGesture {
                                 selectedIndex = index
+                                notes[selectedIndex].isSelected.toggle()
                                 print(selectedIndex)
                             }
+                    }
+                    .onDelete { indexSet in
+                        for index in indexSet {
+                            deleteNote(notes[index])
+                        }
                     }
                 }
                 
@@ -86,8 +118,8 @@ struct ChallengeDetailView: View {
             }
         }
     }
+    
+    private func deleteNote(_ note: Note) {
+        modelContext.delete(note)
+    }
 }
-
-//#Preview {
-//    ChallengeDetailView(challenge: challenges[0])
-//}

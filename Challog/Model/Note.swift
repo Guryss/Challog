@@ -13,12 +13,14 @@ class Note {
     @Attribute(.unique) var id: UUID = UUID()
     var content: String = ""
     var createdAt: Date = Date()
-    
+    var number: Int
     // challenge와 일대다 관계 연결
     var challenge: Challenge?
     
-    init(content: String, createdAt: Date = .now) {
-        self.content = content
-        self.createdAt = createdAt
+    // Note들 목록 중에서 선택된 노트를 표시하기 위해 사용
+    @Transient var isSelected: Bool = false
+    
+    init(number: Int) {
+        self.number = number
     }
 }

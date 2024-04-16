@@ -20,7 +20,7 @@ struct ChallogApp: App {
     }
     
     init() {
-        let schema = Schema([Challenge.self])
+        let schema = Schema([Challenge.self, Note.self])
         let config = ModelConfiguration("My Challenges", schema: schema)
         do {
             container = try ModelContainer(for: schema, configurations: config)

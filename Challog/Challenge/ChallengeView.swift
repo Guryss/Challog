@@ -10,7 +10,7 @@ import SwiftData
 
 struct ChallengeView: View {
     @Query private var challenges: [Challenge]
-    //@Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         VStack {
@@ -42,15 +42,7 @@ struct ChallengeView: View {
                     }
                 }
                 .padding(30)
-            
-//            Button(action: {
-//                //MARK: Challenge 
-//                let newChallenge = Challenge(title: "Macro Challenge", startDate: "2024.09.02", endDate: "2024.11.22")
-//                //modelContext.insert(newChallenge)
-//            }, label: {
-//                Image(systemName: "plus")
-//            })
-            
+
             List {
                 ForEach(challenges) { challenge in
                     NavigationLink(destination: ChallengeDetailView(challenge: challenge)) {
