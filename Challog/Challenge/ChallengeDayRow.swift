@@ -13,7 +13,7 @@ struct ChallengeDayRow: View {
         RoundedRectangle(cornerRadius: 20)
             .overlay {
                 HStack {
-                    Text("Day\(number)")
+                    Text("Day\(number+1)")
                         .font(.system(size: 15))
                         .fontWeight(.medium)
                         .foregroundStyle(.text)

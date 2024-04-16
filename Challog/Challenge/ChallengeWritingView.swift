@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChallengeWritingView: View {
+    @Bindable var note: Note
+    
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY년 MM월 dd일 aa hh시 mm분"
@@ -15,15 +17,13 @@ struct ChallengeWritingView: View {
         return formatter
     }()
     
-    @Bindable var note: Note
-    @State private var noteText: String = ""
-    
     var body: some View {
         VStack {
-            Text("\(Date(), formatter: dateFormatter)")
+            Text("\(note.createdAt, formatter: dateFormatter)")
                 .fontWeight(.medium)
                 .font(.system(size: 14))
                 .foregroundStyle(.text)
+                .padding(.bottom, 10)
             
 //            TextField("오늘의 챌린지를 작성해주세요!", text: $note.content, axis: .vertical)
 //                .font(.system(size: 16))

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ChallengeDetailView: View {
-    //@Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext
     @Query private var notes: [Note]
     @State private var selectedIndex: Int = 0
     var challenge: Challenge
@@ -24,9 +24,9 @@ struct ChallengeDetailView: View {
                 Spacer()
                 
                 Button(action: {
-                    //TODO: create
-                    let newNote = Note(content: "", createdAt: .now)
-                    //modelContext.insert(newNote)
+                    //MARK: create
+                    let newNote = Note(content: "")
+                    modelContext.insert(newNote)
                 }, label: {
                     Image(systemName: "square.and.pencil")
                         .resizable()
@@ -35,7 +35,6 @@ struct ChallengeDetailView: View {
                         .padding(.trailing, 6)
                 })
                 .buttonStyle(.plain)
-                
                 
                 Button(action: {
                     //TODO: delete
@@ -67,10 +66,11 @@ struct ChallengeDetailView: View {
             
             HStack {
                 List {
-                    ForEach(notes) { note in
-                        ChallengeDayRow(number: note.hashValue)
+                    ForEach(notes.indices, id: \.self) { index in
+                        ChallengeDayRow(number: index)
                             .onTapGesture {
-                                selectedIndex = note.hashValue - 1
+                                selectedIndex = index
+                                print(selectedIndex)
                             }
                     }
                 }
@@ -79,7 +79,9 @@ struct ChallengeDetailView: View {
                     .fill(.background)
                     .frame(width: 720)
                     .overlay {
-                        ChallengeWritingView(note: challenge.notes[selectedIndex])
+                        if notes.indices.contains(selectedIndex) {
+                            ChallengeWritingView(note: notes[selectedIndex])
+                        }
                     }
             }
         }

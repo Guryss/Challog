@@ -17,7 +17,7 @@ class Note {
     // challenge와 일대다 관계 연결
     var challenge: Challenge?
     
-    init(content: String, createdAt: Date) {
+    init(content: String, createdAt: Date = .now) {
         self.content = content
         self.createdAt = createdAt
     }
