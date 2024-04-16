@@ -33,13 +33,8 @@ struct ChallengeDetailView: View {
                         }
                     }
                     let newNote = Note(number: maximumIndex + 1)
-//                    if let lastIndex = notes.indices.last {
-//                        newNote.number = lastIndex
-//                    }
-
                     newNote.number = maximumIndex + 1
-                    modelContext.insert(newNote)
-                    
+                    challenge.notes.append(newNote)
                     do {
                         try modelContext.save()
                     } catch {
@@ -57,7 +52,7 @@ struct ChallengeDetailView: View {
                 Button(action: {
                     //MARK: delete
                     if notes.indices.contains(selectedIndex) {
-                        modelContext.delete(notes[selectedIndex])
+                        modelContext.delete(challenge.notes[selectedIndex])
                         do {
                             try modelContext.save()
                         } catch {
@@ -92,17 +87,16 @@ struct ChallengeDetailView: View {
             
             HStack {
                 List {
-                    ForEach(notes.indices, id: \.self) { index in
-                        ChallengeDayRow(number: notes[index].number)
+                    ForEach(challenge.notes.indices, id: \.self) { index in
+                        ChallengeDayRow(number: challenge.notes[index].number)
                             .onTapGesture {
                                 selectedIndex = index
-                                notes[selectedIndex].isSelected.toggle()
                                 print(selectedIndex)
                             }
                     }
                     .onDelete { indexSet in
                         for index in indexSet {
-                            deleteNote(notes[index])
+                            deleteNote(challenge.notes[index])
                         }
                     }
                 }
@@ -112,7 +106,7 @@ struct ChallengeDetailView: View {
                     .frame(width: 720)
                     .overlay {
                         if notes.indices.contains(selectedIndex) {
-                            ChallengeWritingView(note: notes[selectedIndex])
+                            ChallengeWritingView(note: challenge.notes[selectedIndex])
                         }
                     }
             }
