@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ChallengeDetailView: View {
-    @Environment(\.modelContext) private var modelContext
+    //@Environment(\.modelContext) private var modelContext
     @Query private var notes: [Note]
     @State private var selectedIndex: Int = 0
     var challenge: Challenge
@@ -26,7 +26,7 @@ struct ChallengeDetailView: View {
                 Button(action: {
                     //TODO: create
                     let newNote = Note(content: "", createdAt: .now)
-                    modelContext.insert(newNote)
+                    //modelContext.insert(newNote)
                 }, label: {
                     Image(systemName: "square.and.pencil")
                         .resizable()

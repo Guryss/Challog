@@ -14,7 +14,7 @@ class Note {
     var content: String = ""
     var createdAt: Date = Date()
     
-    @Relationship(inverse: \Challenge.notes)
+    // challenge와 일대다 관계 연결
     var challenge: Challenge?
     
     init(content: String, createdAt: Date) {

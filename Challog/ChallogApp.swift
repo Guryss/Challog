@@ -10,11 +10,23 @@ import SwiftData
 
 @main
 struct ChallogApp: App {
+    let container: ModelContainer
     var body: some Scene {
         WindowGroup {
             MainView()
         }
-        .modelContainer(for: [Challenge.self, Note.self])
+        //.modelContainer(for: [Challenge.self])
+        .modelContainer(container)
+    }
+    
+    init() {
+        let schema = Schema([Challenge.self])
+        let config = ModelConfiguration("My Challenges", schema: schema)
+        do {
+            container = try ModelContainer(for: schema, configurations: config)
+        } catch {
+            fatalError("Could not configure the container")
+        }
     }
 }
 

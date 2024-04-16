@@ -25,7 +25,12 @@ struct ChallengeWritingView: View {
                 .font(.system(size: 14))
                 .foregroundStyle(.text)
             
-            TextField("오늘의 챌린지를 작성해주세요!", text: $note.content, axis: .vertical)
+//            TextField("오늘의 챌린지를 작성해주세요!", text: $note.content, axis: .vertical)
+//                .font(.system(size: 16))
+//                .fontWeight(.medium)
+//                .padding(.horizontal, 20)
+            
+            TextEditor(text: $note.content)
                 .font(.system(size: 16))
                 .fontWeight(.medium)
                 .padding(.horizontal, 20)
