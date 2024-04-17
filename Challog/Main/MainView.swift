@@ -29,7 +29,7 @@ struct MainView: View {
                 ChallengeView()
             }
             else {
-                CalendarView()
+                CalendarView(month: .now)
             }
         }
         .navigationTitle(selectedCategory.logo)

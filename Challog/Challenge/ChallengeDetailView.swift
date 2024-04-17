@@ -76,7 +76,7 @@ struct ChallengeDetailView: View {
             
             HStack {
                 List {
-                    ForEach(challenge.notes.sorted(by: { $0.number < $1.number }), id: \.self) { note in
+                    ForEach(challenge.notes.sorted(by: { $0.number < $1.number })) { note in
                         ChallengeDayRow(number: note.number, isSelected: note.number == selectedIndex)
                             .onTapGesture {
                                 selectedIndex = note.number
@@ -84,17 +84,17 @@ struct ChallengeDetailView: View {
                             }
                     }
                     //TODO: onDelete 기능 수정
-                    //                    .onDelete { indexSet in
-                    //                        if let firstIndex = indexSet.first {
-                    //                            selectedIndex = challenge.notes[firstIndex].number
-                    //                            // removeNote(at: indexSet)
-                    //                            challenge.notes.removeAll(where:  { $0.number == selectedIndex })
-                    //                            print("firstIndex: \(firstIndex)")
-                    //                            print("indexSet: \(indexSet)")
-                    //                            print("selectedIndex: \(selectedIndex)")
-                    //                        }
-                    //
-                    //                    }
+                    .onDelete { indexSet in
+                        if let firstIndex = indexSet.first {
+                            selectedIndex = challenge.notes.sorted(by: { $0.number < $1.number })[firstIndex].number
+                            //removeNote(at: indexSet)
+                            challenge.notes.removeAll(where:  { $0.number == selectedIndex })
+                            print("firstIndex: \(firstIndex)")
+                            print("indexSet: \(indexSet)")
+                            print("selectedIndex: \(selectedIndex)")
+                        }
+                        
+                    }
                 }
                 
                 Rectangle()

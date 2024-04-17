@@ -33,22 +33,11 @@ struct ChallengeWritingView: View {
                     get: { "\(note.number)" },
                     set: {
                         if let value = Int($0) {
-                            //note.number = value
+                            note.number = value
                             selectedIndex = value
                         }
                     }
-                ), onCommit: {
-                    // 포커스가 해제될 때 selectedIndex를 업데이트합니다.
-                    
-                })
-                
-                Spacer()
-                
-                Button(action: {
-                    note.number = selectedIndex
-                }, label: {
-                    Text("완료")
-                })
+                ))
             }
             
             TextEditor(text: $note.content)

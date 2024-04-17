@@ -21,6 +21,9 @@
 		C9B0AEE62BCAA5CB009648F5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0AEE52BCAA5CB009648F5 /* CalendarView.swift */; };
 		C9B0AEE82BCAAB2C009648F5 /* ChallengeListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B0AEE72BCAAB2C009648F5 /* ChallengeListRow.swift */; };
 		C9D10FCA2BCD058800E90B95 /* PreviewChallengeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D10FC92BCD058800E90B95 /* PreviewChallengeContainer.swift */; };
+		C9DAA47E2BCFBA27008BDB2B /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DAA47D2BCFBA27008BDB2B /* CalendarHeaderView.swift */; };
+		C9DAA4802BCFBA69008BDB2B /* Week.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DAA47F2BCFBA69008BDB2B /* Week.swift */; };
+		C9DAA4822BCFBBE5008BDB2B /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DAA4812BCFBBE5008BDB2B /* CalendarCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		C9B0AEE52BCAA5CB009648F5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C9B0AEE72BCAAB2C009648F5 /* ChallengeListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeListRow.swift; sourceTree = "<group>"; };
 		C9D10FC92BCD058800E90B95 /* PreviewChallengeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewChallengeContainer.swift; sourceTree = "<group>"; };
+		C9DAA47D2BCFBA27008BDB2B /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
+		C9DAA47F2BCFBA69008BDB2B /* Week.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week.swift; sourceTree = "<group>"; };
+		C9DAA4812BCFBBE5008BDB2B /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				C9B0AEE52BCAA5CB009648F5 /* CalendarView.swift */,
+				C9DAA47D2BCFBA27008BDB2B /* CalendarHeaderView.swift */,
+				C9DAA4812BCFBBE5008BDB2B /* CalendarCellView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -119,6 +127,7 @@
 				C99F27292BC922C6000A172A /* Category.swift */,
 				C97519492BCAB18800255994 /* Challenge.swift */,
 				C9240A8A2BCCEEAA00F99EE3 /* Note.swift */,
+				C9DAA47F2BCFBA69008BDB2B /* Week.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,9 +216,12 @@
 				C99F27172BC91F49000A172A /* ChallogApp.swift in Sources */,
 				C9B0AEE82BCAAB2C009648F5 /* ChallengeListRow.swift in Sources */,
 				C93492912BCBFA46006F4550 /* ChallengeWritingView.swift in Sources */,
+				C9DAA4822BCFBBE5008BDB2B /* CalendarCellView.swift in Sources */,
 				C9D10FCA2BCD058800E90B95 /* PreviewChallengeContainer.swift in Sources */,
 				C969F4042BCABCE1000B48A2 /* ChallengeDayRow.swift in Sources */,
 				C9240A8B2BCCEEAA00F99EE3 /* Note.swift in Sources */,
+				C9DAA4802BCFBA69008BDB2B /* Week.swift in Sources */,
+				C9DAA47E2BCFBA27008BDB2B /* CalendarHeaderView.swift in Sources */,
 				C975194C2BCAB5B200255994 /* ChallengeDetailView.swift in Sources */,
 				C99F272E2BC92D2A000A172A /* ChallengeView.swift in Sources */,
 				C99F272A2BC922C6000A172A /* Category.swift in Sources */,

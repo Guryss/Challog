@@ -9,8 +9,8 @@ import Foundation
 import SwiftData
 
 @Model
-class Note {
-    @Attribute(.unique) var id: UUID = UUID()
+class Note: Identifiable {
+    var id: UUID = UUID()
     var content: String = ""
     var createdAt: Date = Date()
     var number: Int
