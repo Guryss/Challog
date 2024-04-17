@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ChallengeDayRow: View {
     var number: Int
-    @State private var isSelected: Bool = false
+    var isSelected: Bool = false
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
+        RoundedRectangle(cornerRadius: 15)
             .overlay {
                 HStack {
                     Text("Day\(number)")
@@ -28,10 +28,6 @@ struct ChallengeDayRow: View {
                 .padding()
             }
             .foregroundStyle(isSelected ? .accent : .dayRow)
-            .frame(width: 250, height: 70)
+            .frame(height: 70)
     }
 }
-//
-//#Preview {
-//    ChallengeDayRow(number: 1)
-//}

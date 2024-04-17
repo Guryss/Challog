@@ -10,10 +10,9 @@ import SwiftData
 
 struct ChallengeDetailView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Note.number) private var notes: [Note]
+    var challenge: Challenge
     @State private var selectedIndex: Int = 0
     @State private var isSelected: Bool = false
-    var challenge: Challenge
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -27,7 +26,7 @@ struct ChallengeDetailView: View {
                 Button(action: {
                     //MARK: create
                     var maximumIndex = 0
-                    for note in notes {
+                    for note in challenge.notes {
                         if maximumIndex < note.number {
                             maximumIndex = note.number
                         }
@@ -35,11 +34,7 @@ struct ChallengeDetailView: View {
                     let newNote = Note(number: maximumIndex + 1)
                     newNote.number = maximumIndex + 1
                     challenge.notes.append(newNote)
-                    do {
-                        try modelContext.save()
-                    } catch {
-                        print("Error creating note: \(error.localizedDescription)")
-                    }
+                    selectedIndex = newNote.number
                 }, label: {
                     Image(systemName: "square.and.pencil")
                         .resizable()
@@ -51,14 +46,8 @@ struct ChallengeDetailView: View {
                 
                 Button(action: {
                     //MARK: delete
-                    if notes.indices.contains(selectedIndex) {
-                        modelContext.delete(challenge.notes[selectedIndex])
-                        do {
-                            try modelContext.save()
-                        } catch {
-                            print("Error deleting note: \(error.localizedDescription)")
-                        }
-                    }
+                    // note.number == selectedIndex인 모든 노트들을 삭제한다.
+                    challenge.notes.removeAll(where: { $0.number == selectedIndex })
                 }, label: {
                     Image(systemName: "trash")
                         .resizable()
@@ -87,33 +76,42 @@ struct ChallengeDetailView: View {
             
             HStack {
                 List {
-                    ForEach(challenge.notes.indices, id: \.self) { index in
-                        ChallengeDayRow(number: challenge.notes[index].number)
+                    ForEach(challenge.notes.sorted(by: { $0.number < $1.number }), id: \.self) { note in
+                        ChallengeDayRow(number: note.number, isSelected: note.number == selectedIndex)
                             .onTapGesture {
-                                selectedIndex = index
-                                print(selectedIndex)
+                                selectedIndex = note.number
+                                print("selectedIndex: \(selectedIndex)")
                             }
                     }
-                    .onDelete { indexSet in
-                        for index in indexSet {
-                            deleteNote(challenge.notes[index])
-                        }
-                    }
+                    //TODO: onDelete 기능 수정
+                    //                    .onDelete { indexSet in
+                    //                        if let firstIndex = indexSet.first {
+                    //                            selectedIndex = challenge.notes[firstIndex].number
+                    //                            // removeNote(at: indexSet)
+                    //                            challenge.notes.removeAll(where:  { $0.number == selectedIndex })
+                    //                            print("firstIndex: \(firstIndex)")
+                    //                            print("indexSet: \(indexSet)")
+                    //                            print("selectedIndex: \(selectedIndex)")
+                    //                        }
+                    //
+                    //                    }
                 }
                 
                 Rectangle()
                     .fill(.background)
                     .frame(width: 720)
                     .overlay {
-                        if notes.indices.contains(selectedIndex) {
-                            ChallengeWritingView(note: challenge.notes[selectedIndex])
+                        // challenge.note.number == selectedIndex인 note들중에 첫번째 인덱스를 가리킨다.
+                        if let index = challenge.notes.firstIndex(where: { $0.number == selectedIndex }) {
+                            ChallengeWritingView(note: challenge.notes[index], selectedIndex: $selectedIndex)
                         }
                     }
             }
         }
     }
     
-    private func deleteNote(_ note: Note) {
-        modelContext.delete(note)
+    func removeNote(at offsets: IndexSet) {
+        challenge.notes.remove(atOffsets: offsets)
     }
 }
+

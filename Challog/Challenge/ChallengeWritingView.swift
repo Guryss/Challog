@@ -16,9 +16,8 @@ struct ChallengeWritingView: View {
         formatter.locale = Locale(identifier: "ko-KR")
         return formatter
     }()
-    
-     //var dayText: Int
-    
+
+    @Binding var selectedIndex: Int
     var body: some View {
         VStack {
             Text("\(note.createdAt, formatter: dateFormatter)")
@@ -27,25 +26,29 @@ struct ChallengeWritingView: View {
                 .foregroundStyle(.text)
                 .padding(.bottom, 10)
             
-//            TextField("오늘의 챌린지를 작성해주세요!", text: $note.content, axis: .vertical)
-//                .font(.system(size: 16))
-//                .fontWeight(.medium)
-//                .padding(.horizontal, 20)
-            
             HStack {
                 Text("Day")
                 
-                //TextField("", value: $note., formatter: NumberFormatter())
                 TextField("", text: Binding<String>(
                     get: { "\(note.number)" },
                     set: {
                         if let value = Int($0) {
-                            note.number = value
+                            //note.number = value
+                            selectedIndex = value
                         }
                     }
-                ))
+                ), onCommit: {
+                    // 포커스가 해제될 때 selectedIndex를 업데이트합니다.
+                    
+                })
                 
                 Spacer()
+                
+                Button(action: {
+                    note.number = selectedIndex
+                }, label: {
+                    Text("완료")
+                })
             }
             
             TextEditor(text: $note.content)
@@ -54,7 +57,7 @@ struct ChallengeWritingView: View {
                 .padding(.horizontal, 20)
                 .overlay {
                     if note.content.isEmpty {
-                        Text("오늘의 챌린지를 작성해주세요!")
+                        Text("챌린지 Day\(note.number)를 작성해주세요!")
                             .font(.system(size: 16))
                             .fontWeight(.regular)
                             .foregroundStyle(.secondary)
