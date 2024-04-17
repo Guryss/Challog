@@ -31,7 +31,9 @@ struct CalendarView: View {
                 Text("\(month, formatter: dateFormatter)")
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
-                    
+                    .frame(width: 170)
+                    .foregroundStyle(.text)
+                
                 Button(action: {
                     changeMonth(by: 1)
                 }, label: {
@@ -40,18 +42,24 @@ struct CalendarView: View {
             }
             .padding()
             
+            Spacer().frame(height: 40)
+            
             HStack {
                 VStack {
                     CalendarHeaderView()
+                        .padding(.leading, 40)
                     calendarGridView
-                        //.padding(.leading, 10)
+                    
                     Spacer()
                 }
+                .frame(width: 700, height: 600)
+                .padding(.trailing, 20)
                 
                 RoundedRectangle(cornerRadius: 15)
-                   
+                    .frame(width: 300, height: 600)
             }
         }
+        .padding()
     }
     
     // MARK: - 날짜 그리드 뷰
@@ -104,12 +112,12 @@ struct CalendarView: View {
     }
     
     /// 월 변경
-      func changeMonth(by value: Int) {
+    func changeMonth(by value: Int) {
         let calendar = Calendar.current
         if let newMonth = calendar.date(byAdding: .month, value: value, to: month) {
-          self.month = newMonth
+            self.month = newMonth
         }
-      }
+    }
 }
 
 #Preview {

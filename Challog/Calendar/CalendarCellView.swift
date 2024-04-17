@@ -17,25 +17,65 @@ struct CalendarCellView: View {
     }
     
     var body: some View {
+        //        Button(action: {
+        //            print("버튼 영역 보기")
+        //        }, label: {
+        //            VStack {
+        //                Divider()
+        //                HStack {
+        //                    Divider()
+        //                    RoundedRectangle(cornerRadius: 5)
+        //                        //.opacity(0)
+        //                        .background(.selected)
+        //
+        //                        .overlay(alignment: .topLeading) {
+        //                                Circle()
+        //                                    .frame(width: 25, height: 25)
+        //                                    .foregroundStyle(selected ? .accent.opacity(0.4) : .clear)
+        //                                    .overlay {
+        //                                        Text(String(day))
+        //                                            .padding(2)
+        //                                    }
+        //                        }
+        //                        .foregroundColor(.text)
+        //                        .frame(width: 80, height: 80)
+        //                    Divider()
+        //                }
+        //                Divider()
+        //            }
+        //        })
+        //        .buttonStyle(.plain)
+        
         VStack {
             Divider()
+            
             HStack {
                 Divider()
+        
                 RoundedRectangle(cornerRadius: 5)
                     .opacity(0)
+                    .background(.challogBackground)
                     .overlay(alignment: .topLeading) {
-                        Text(String(day))
+                        Circle()
+                            .frame(width: 25, height: 25)
+                            .foregroundStyle(selected ? .accent.opacity(0.4) : .clear)
+                            .overlay {
+                                Text(String(day))
+                                    .padding(2)
+                                    .foregroundStyle(.text)
+                            }
                     }
-                    .foregroundColor(.text)
-                    .frame(width: 80, height: 80)
-                    .background(selected ? .accent.opacity(0.4) : .clear)
                 Divider()
             }
+            .frame(width: 80, height: 80)
             
             Divider()
+            
         }
-        
     }
+    
 }
+
+
 
 

@@ -12,13 +12,14 @@ struct CalendarHeaderView: View {
         HStack {
             ForEach(Week.allCases, id: \.self) { week in
                 Text(week.title)
-                    .font(.system(size: 13))
+                    .font(.system(size: 10))
                     .fontWeight(.medium)
                     .foregroundStyle(.text)
-                    .padding(.trailing, 60)
+                    .frame(maxWidth: .infinity)
+                
+               Spacer().frame(width: 65)
             }
         }
-        .frame(width: 600)
     }
 }
 
