@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CalendarView: View {
     let dateFormatter: DateFormatter = {
@@ -22,9 +23,11 @@ struct CalendarView: View {
         return formatter
     }()
     
-    @State private var date = Date()
+    @State private var date: Date = Date()  // 현재 날짜로 초기화
     @State var month: Date
-    @State var selectedDate: Date = Date()
+    @State var selectedDate: Date = Date() // 현재 날짜로 초기화
+    
+    @Query private var challenges: [Challenge]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -64,10 +67,53 @@ struct CalendarView: View {
                 
                 RoundedRectangle(cornerRadius: 15)
                     .frame(width: 300, height: 600)
-                    .foregroundStyle(.selected)
+                    .foregroundStyle(.line)
                     .overlay(alignment: .top) {
-                        Text("\(selectedDate, formatter: noteDateForMatter)")
-                            .padding()
+                        VStack {
+                            Text("Nano Challenge\n Day10")
+                                .font(.system(size: 20))
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.accent)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 20)
+                                .lineSpacing(8)
+                            
+                            Divider()
+                                .frame(height: 7)
+                                .padding()
+                            
+                            Text("\(selectedDate, formatter: noteDateForMatter)")
+                                .padding()
+                            
+                            //                        ForEach(challenges) { challenge in
+                            //                            ForEach (challenge.notes) { note in
+                            //                                note.createdAt.formattedCalendarDayDate == selectedDate.formattedCalendarDayDate {
+                            //
+                            //                                }
+                            //                            }
+                            //                        }
+                            
+                            Text("아직 챌린지를 작성하지 않았네요.\n작성하러 가볼까요?")
+                                .fontWeight(.medium)
+                                .font(.system(size: 14))
+                                .foregroundStyle(.text)
+                                .multilineTextAlignment(.center)
+                                .padding(.bottom, 30)
+                            
+                            Button(action: {
+                                //TODO: ChallengeView로 이동
+                            }, label: {
+                                Text("챌린지 쓰러 가기")
+                                    .font(.system(size: 14))
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.text)
+                                    .padding()
+                                    .background(.accent)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .shadow(color: .black.opacity(0.1), radius: 10)
+                            })
+                            .buttonStyle(.plain)
+                        }
                     }
             }
         }
@@ -93,6 +139,9 @@ struct CalendarView: View {
                         CalendarCellView(day: day, selected: date == selectedDate, isToday: isToday)
                             .onTapGesture {
                                 selectedDate = date
+                            }
+                            .onAppear {
+                                selectedDate = .now
                             }
                     }
                 }
@@ -125,7 +174,6 @@ struct CalendarView: View {
     }
     
     var today: Date {
-        let now = Date()
         let components = Calendar.current.dateComponents([.year, .month, .day], from: .now)
         return Calendar.current.date(from: components) ?? .now
     }

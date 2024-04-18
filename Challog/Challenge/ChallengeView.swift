@@ -10,7 +10,6 @@ import SwiftData
 
 struct ChallengeView: View {
     @Query private var challenges: [Challenge]
-    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         VStack {

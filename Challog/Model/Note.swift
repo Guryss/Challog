@@ -10,7 +10,8 @@ import SwiftData
 
 @Model
 class Note: Identifiable {
-    var id: UUID = UUID()
+    //class: 생성시 class만의 고유한 주소값이 생기기 때문에 Identifiable 프로토콜 채택 시 id 생성 안해도 된다!
+    //var id: UUID = UUID()
     var content: String = ""
     var createdAt: Date = Date()
     var number: Int

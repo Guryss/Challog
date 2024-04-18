@@ -12,8 +12,13 @@ struct MainView: View {
     
     var body: some View {
         NavigationSplitView {
+            Image(.imgProfile)
+                .padding(.top, 50)
+            
             Text("구리스\n(Guryss)")
+                .padding(.top, 20)
                 .padding(.bottom, 80)
+                .multilineTextAlignment(.center)
             
             List(Category.allCases, selection: $selectedCategory) { category in
                 NavigationLink(value: category) {
