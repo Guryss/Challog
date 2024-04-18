@@ -24,10 +24,14 @@ struct ChallengeWritingView: View {
                 .fontWeight(.medium)
                 .font(.system(size: 14))
                 .foregroundStyle(.text)
-                .padding(.bottom, 10)
+                .padding(.vertical, 10)
             
             HStack {
                 Text("Day")
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
+                    .foregroundStyle(.text)
+                    .padding(.leading, 20)
                 
                 TextField("", text: Binding<String>(
                     get: { "\(note.number)" },
@@ -38,11 +42,13 @@ struct ChallengeWritingView: View {
                         }
                     }
                 ))
+                .padding(.horizontal, 40)
             }
             
             TextEditor(text: $note.content)
                 .font(.system(size: 16))
                 .fontWeight(.medium)
+                .foregroundStyle(.text)
                 .padding(.horizontal, 20)
                 .overlay {
                     if note.content.isEmpty {

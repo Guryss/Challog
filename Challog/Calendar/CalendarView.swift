@@ -15,6 +15,13 @@ struct CalendarView: View {
         return formatter
     }()
     
+    let noteDateForMatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko-KR")
+        formatter.dateFormat = "MM월 dd일"
+        return formatter
+    }()
+    
     @State private var date = Date()
     @State var month: Date
     @State var selectedDate: Date = Date()
@@ -57,6 +64,11 @@ struct CalendarView: View {
                 
                 RoundedRectangle(cornerRadius: 15)
                     .frame(width: 300, height: 600)
+                    .foregroundStyle(.selected)
+                    .overlay(alignment: .top) {
+                        Text("\(selectedDate, formatter: noteDateForMatter)")
+                            .padding()
+                    }
             }
         }
         .padding()
@@ -76,8 +88,9 @@ struct CalendarView: View {
                     } else {
                         let date = getDate(for: index - firstWeekday)
                         let day = index - firstWeekday + 1
+                        let isToday = date.formattedCalendarDayDate == today.formattedCalendarDayDate
                         
-                        CalendarCellView(day: day, selected: date == selectedDate)
+                        CalendarCellView(day: day, selected: date == selectedDate, isToday: isToday)
                             .onTapGesture {
                                 selectedDate = date
                             }
@@ -111,6 +124,12 @@ struct CalendarView: View {
         return Calendar.current.component(.weekday, from: firstDayOfMonth)
     }
     
+    var today: Date {
+        let now = Date()
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: .now)
+        return Calendar.current.date(from: components) ?? .now
+    }
+    
     /// 월 변경
     func changeMonth(by value: Int) {
         let calendar = Calendar.current
@@ -118,6 +137,18 @@ struct CalendarView: View {
             self.month = newMonth
         }
     }
+}
+
+extension Date {
+    static let calendarDayDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy dd"
+        return formatter
+      }()
+    
+    var formattedCalendarDayDate: String {
+        return Date.calendarDayDateFormatter.string(from: self)
+      }
 }
 
 #Preview {
