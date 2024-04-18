@@ -81,6 +81,7 @@ struct ChallengeDetailView: View {
                             .onTapGesture {
                                 selectedIndex = note.number
                             }
+                            .listRowSeparator(.hidden)
                     }
                     //MARK: onDelete -> sorted(), sort() 공부하기 !!
                     .onDelete { indexSet in
@@ -114,10 +115,6 @@ struct ChallengeDetailView: View {
                     }
             }
         }
-    }
-    
-    func removeNote(at offsets: IndexSet) {
-        challenge.notes.remove(atOffsets: offsets)
     }
 }
 

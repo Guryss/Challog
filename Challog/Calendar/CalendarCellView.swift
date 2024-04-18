@@ -34,14 +34,10 @@ struct CalendarCellView: View {
         VStack {
             Divider()
                 .foregroundStyle(selected ? .accent : .text)
-            
-            HStack {
-                Divider()
-                    .foregroundStyle(selected ? .accent : .text)
-                
+
                 RoundedRectangle(cornerRadius: 5)
                     .opacity(0)
-                    .background(.calendarCell)
+                    .background(.challogBackground)
                     .overlay(alignment: .topLeading) {
                         Circle()
                             .frame(width: 25, height: 25)
@@ -51,9 +47,6 @@ struct CalendarCellView: View {
                                     .padding(2)
                                     .foregroundStyle(.text)
                             }
-                    }
-                Divider()
-                    .foregroundStyle(selected ? .accent : .text)
             }
             .frame(width: 80, height: 80)
             

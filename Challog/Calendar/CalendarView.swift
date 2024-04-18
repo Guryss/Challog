@@ -19,7 +19,7 @@ struct CalendarView: View {
     let noteDateForMatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko-KR")
-        formatter.dateFormat = "MM월 dd일"
+        formatter.dateFormat = "MM/dd"
         return formatter
     }()
     
@@ -53,38 +53,50 @@ struct CalendarView: View {
                 }
                 .padding()
                 
-                Spacer().frame(height: 40)
+                Spacer().frame(height: 20)
                 
                 HStack {
                     VStack {
                         CalendarHeaderView()
                             .padding(.leading, 40)
+                            .padding(.top, 20)
                         calendarGridView
-                        
-                        Spacer()
+                            .padding(.leading, 20)
+                            .padding(.bottom, 20)
                     }
-                    .frame(width: 700, height: 600)
                     .padding(.trailing, 20)
+                    .background(.challogBackground)
+                    .cornerRadius(15)
+                    
                     
                     RoundedRectangle(cornerRadius: 15)
-                        .frame(width: 300, height: 600)
+                        .frame(width: 300, height: 580)
                         .foregroundStyle(.challogBackground)
                         .overlay(alignment: .top) {
                             VStack {
-                                Text("Nano Challenge\n Day10")
+                                Text("Nano Challenge")
                                     .font(.system(size: 20))
                                     .fontWeight(.semibold)
                                     .foregroundStyle(.accent)
-                                    .multilineTextAlignment(.center)
                                     .padding(.top, 20)
-                                    .lineSpacing(8)
+                                
+                                HStack {
+                                    Text("Day10")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.accent)
+                                }
+                                
+                                Text("\(selectedDate, formatter: noteDateForMatter)")
+                                    .font(.system(size: 14))
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.accent.opacity(0.5))
+                                    .padding(.top, 10)
                                 
                                 Divider()
                                     .frame(height: 7)
                                     .padding()
-                                
-                                Text("\(selectedDate, formatter: noteDateForMatter)")
-                                    .padding()
+   
                                 //TODO: Challenge와 날짜 연결하기
                                 
                                 Text("아직 챌린지를 작성하지 않았네요.\n작성하러 가볼까요?")

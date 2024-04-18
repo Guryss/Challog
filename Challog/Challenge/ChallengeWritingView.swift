@@ -39,9 +39,9 @@ struct ChallengeWritingView: View {
                 .padding(.trailing, 30)
             }
             .padding(.vertical, 30)
-
+            
             RoundedRectangle(cornerRadius: 20)
-                .fill(.challogBackground)
+                .fill(.dayRow)
                 .padding()
                 .overlay {
                     VStack {
@@ -51,7 +51,7 @@ struct ChallengeWritingView: View {
                         TextEditor(text: $note.content)
                             .font(.system(size: 16))
                             .fontWeight(.medium)
-                            .foregroundStyle(.text)
+                        
                             .overlay {
                                 if note.content.isEmpty {
                                     Text("챌린지 Day\(note.number)를 작성해주세요!")
@@ -60,14 +60,12 @@ struct ChallengeWritingView: View {
                                         .foregroundStyle(.secondary)
                                 }
                             }
-                            .colorMultiply(.clear)
+                            .foregroundStyle(.text)
                             .padding(.horizontal, 50)
                             .padding(.bottom, 30)
                     }
+                    .padding()
                 }
-            
-            
-            Spacer()
         }
     }
 }
