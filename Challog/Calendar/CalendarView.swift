@@ -17,7 +17,7 @@ struct CalendarView: View {
     }()
     
     let noteDateForMatter: DateFormatter = {
-       let formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko-KR")
         formatter.dateFormat = "MM월 dd일"
         return formatter
@@ -30,94 +30,87 @@ struct CalendarView: View {
     @Query private var challenges: [Challenge]
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack{
-                Button(action: {
-                    changeMonth(by: -1)
-                }, label: {
-                    Image(systemName: "chevron.backward")
-                })
+        NavigationStack {
+            VStack(alignment: .leading) {
+                HStack{
+                    Button(action: {
+                        changeMonth(by: -1)
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                    })
+                    
+                    Text("\(month, formatter: dateFormatter)")
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
+                        .frame(width: 170)
+                        .foregroundStyle(.text)
+                    
+                    Button(action: {
+                        changeMonth(by: 1)
+                    }, label: {
+                        Image(systemName: "chevron.forward")
+                    })
+                }
+                .padding()
                 
-                Text("\(month, formatter: dateFormatter)")
-                    .font(.system(size: 20))
-                    .fontWeight(.semibold)
-                    .frame(width: 170)
-                    .foregroundStyle(.text)
+                Spacer().frame(height: 40)
                 
-                Button(action: {
-                    changeMonth(by: 1)
-                }, label: {
-                    Image(systemName: "chevron.forward")
-                })
+                HStack {
+                    VStack {
+                        CalendarHeaderView()
+                            .padding(.leading, 40)
+                        calendarGridView
+                        
+                        Spacer()
+                    }
+                    .frame(width: 700, height: 600)
+                    .padding(.trailing, 20)
+                    
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 300, height: 600)
+                        .foregroundStyle(.challogBackground)
+                        .overlay(alignment: .top) {
+                            VStack {
+                                Text("Nano Challenge\n Day10")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(.accent)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 20)
+                                    .lineSpacing(8)
+                                
+                                Divider()
+                                    .frame(height: 7)
+                                    .padding()
+                                
+                                Text("\(selectedDate, formatter: noteDateForMatter)")
+                                    .padding()
+                                //TODO: Challenge와 날짜 연결하기
+                                
+                                Text("아직 챌린지를 작성하지 않았네요.\n작성하러 가볼까요?")
+                                    .fontWeight(.medium)
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(.text)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.bottom, 30)
+                                
+                                NavigationLink(destination: EmptyView()) {
+                                    Text("챌린지 쓰러 가기")
+                                        .font(.system(size: 14))
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(.text)
+                                        .padding()
+                                        .background(.accent)
+                                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                                        .shadow(color: .black.opacity(0.1), radius: 10)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                }
             }
             .padding()
-            
-            Spacer().frame(height: 40)
-            
-            HStack {
-                VStack {
-                    CalendarHeaderView()
-                        .padding(.leading, 40)
-                    calendarGridView
-                    
-                    Spacer()
-                }
-                .frame(width: 700, height: 600)
-                .padding(.trailing, 20)
-                
-                RoundedRectangle(cornerRadius: 15)
-                    .frame(width: 300, height: 600)
-                    .foregroundStyle(.line)
-                    .overlay(alignment: .top) {
-                        VStack {
-                            Text("Nano Challenge\n Day10")
-                                .font(.system(size: 20))
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.accent)
-                                .multilineTextAlignment(.center)
-                                .padding(.top, 20)
-                                .lineSpacing(8)
-                            
-                            Divider()
-                                .frame(height: 7)
-                                .padding()
-                            
-                            Text("\(selectedDate, formatter: noteDateForMatter)")
-                                .padding()
-                            
-                            //                        ForEach(challenges) { challenge in
-                            //                            ForEach (challenge.notes) { note in
-                            //                                note.createdAt.formattedCalendarDayDate == selectedDate.formattedCalendarDayDate {
-                            //
-                            //                                }
-                            //                            }
-                            //                        }
-                            
-                            Text("아직 챌린지를 작성하지 않았네요.\n작성하러 가볼까요?")
-                                .fontWeight(.medium)
-                                .font(.system(size: 14))
-                                .foregroundStyle(.text)
-                                .multilineTextAlignment(.center)
-                                .padding(.bottom, 30)
-                            
-                            Button(action: {
-                                //TODO: ChallengeView로 이동
-                            }, label: {
-                                Text("챌린지 쓰러 가기")
-                                    .font(.system(size: 14))
-                                    .fontWeight(.bold)
-                                    .foregroundStyle(.text)
-                                    .padding()
-                                    .background(.accent)
-                                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                                    .shadow(color: .black.opacity(0.1), radius: 10)
-                            })
-                            .buttonStyle(.plain)
-                        }
-                    }
-            }
         }
-        .padding()
     }
     
     // MARK: - 날짜 그리드 뷰
@@ -192,11 +185,11 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy dd"
         return formatter
-      }()
+    }()
     
     var formattedCalendarDayDate: String {
         return Date.calendarDayDateFormatter.string(from: self)
-      }
+    }
 }
 
 #Preview {

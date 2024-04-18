@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var selectedCategory: Category = .calendar
-    
+    @State private var selectedCategory: Category = .challenge
+
     var body: some View {
         NavigationSplitView {
             Image(.imgProfile)
@@ -27,6 +27,7 @@ struct MainView: View {
                         Text(category.title)
                     }
                 }
+                //TODO: NavigationLink에 tag붙이기
             }
             
         } detail: {

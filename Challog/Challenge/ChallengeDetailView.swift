@@ -80,20 +80,26 @@ struct ChallengeDetailView: View {
                         ChallengeDayRow(number: note.number, isSelected: note.number == selectedIndex)
                             .onTapGesture {
                                 selectedIndex = note.number
-                                print("selectedIndex: \(selectedIndex)")
                             }
                     }
-                    //TODO: onDelete 기능 수정
+                    //MARK: onDelete -> sorted(), sort() 공부하기 !!
                     .onDelete { indexSet in
                         if let firstIndex = indexSet.first {
                             selectedIndex = challenge.notes.sorted(by: { $0.number < $1.number })[firstIndex].number
                             //removeNote(at: indexSet)
                             challenge.notes.removeAll(where:  { $0.number == selectedIndex })
-                            print("firstIndex: \(firstIndex)")
-                            print("indexSet: \(indexSet)")
-                            print("selectedIndex: \(selectedIndex)")
                         }
-                        
+                    }
+                }
+                .overlay {
+                    if challenge.notes.isEmpty {
+                        Text("\(challenge.title)의 첫 글을 작성해주세요!")
+                            .font(.system(size: 16))
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.accent)
+                            .padding()
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
                     }
                 }
                 

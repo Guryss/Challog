@@ -41,7 +41,7 @@ struct CalendarCellView: View {
                 
                 RoundedRectangle(cornerRadius: 5)
                     .opacity(0)
-                    .background(.challogBackground)
+                    .background(.calendarCell)
                     .overlay(alignment: .topLeading) {
                         Circle()
                             .frame(width: 25, height: 25)
